@@ -1,4 +1,4 @@
-# OmniBind - Gurmukhi Punjabi and English Neural Machine Translation Framework
+# OmniBind - Gurmukhi Punjabi, Hindi, and English Neural Machine Translation Framework
 
 A complete, end-to-end Machine Translation project fine-tuning **Helsinki-NLP MarianMT** models on the **Anuvaad Parallel Corpora** (supporting both Gurmukhi Punjabi ↔ English and Hindi ↔ English), optimized for **100,000 sampled sentence pairs** trained on **Kaggle T4 GPUs**.
 
