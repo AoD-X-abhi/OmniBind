@@ -1,0 +1,30 @@
+# Configuration for Punjabi-English Translation Project (VadAnuvaadNLP)
+
+data:
+  raw_en_path: "Anuvaad.en-pa.en"
+  raw_pa_path: "Anuvaad.en-pa.pa"
+  output_csv: "punjabi_english_100k.csv"
+  sample_size: 100000
+  train_split: 0.85
+  val_split: 0.075
+  test_split: 0.075
+  random_seed: 42
+  min_char_len: 5
+  max_char_len: 500
+  max_ratio: 3.0
+
+model:
+  base_model: "Helsinki-NLP/opus-mt-pa-en"
+  max_length: 128
+
+training:
+  output_dir: "./results"
+  num_train_epochs: 3
+  per_device_train_batch_size: 16
+  per_device_eval_batch_size: 16
+  learning_rate: 2e-5
+  weight_decay: 0.01
+  fp16: true
+  save_total_limit: 2
+  logging_steps: 100
+  eval_steps: 500

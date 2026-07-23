@@ -1,0 +1,13 @@
+transformers>=4.35.0
+datasets>=2.14.0
+torch>=2.0.0
+accelerate>=0.24.0
+sentencepiece>=0.1.99
+sacrebleu>=2.3.1
+evaluate>=0.4.0
+pandas>=2.0.0
+numpy>=1.24.0
+gradio>=4.0.0
+pyyaml>=6.0
+unicodedata2>=15.0.0
+tqdm>=4.66.0

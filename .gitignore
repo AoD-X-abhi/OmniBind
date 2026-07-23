@@ -1,0 +1,27 @@
+# Large datasets and corpora (do not push to GitHub)
+Anuvaad.en-pa.en
+Anuvaad.en-pa.pa
+Anuvaad.en-pa.xml
+punjabi_english_100k.csv
+*.csv
+*.xml
+*.zip
+*.tar.gz
+
+# Checkpoints and training output directories
+punjabi_english_marian_results/
+punjabi_english_marian_final/
+results/
+nllb_punjabi_english/
+
+# Python environments, cache and OS files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+.venv/
+env/
+venv/
+.DS_Store
+Thumbs.db
