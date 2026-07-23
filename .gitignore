@@ -1,17 +1,18 @@
-# Large datasets and corpora (do not push to GitHub)
-data/
-Anuvaad.en-*
-src/Anuvaad.en-*
-src/README
-src/LICENSE
-punjabi_english_100k.csv
-hindi_english_100k.csv
-*.csv
-*.xml
-*.zip
-*.tar.gz
+# Exclude raw dataset files (several hundred MBs/GBs)
+data/punjabi/Anuvaad.en-pa.en
+data/punjabi/Anuvaad.en-pa.pa
+data/punjabi/Anuvaad.en-pa.xml
+data/hindi/Anuvaad.en-hi.en
+data/hindi/Anuvaad.en-hi.hi
+data/hindi/Anuvaad.en-hi.xml
+data/hindi/en-hi.txt.zip
 
-# Checkpoints and training output directories
+# Track processed 100k datasets (~40-49MB)
+!data/processed/
+!data/punjabi/.gitkeep
+!data/hindi/.gitkeep
+
+# Exclude training checkpoints
 punjabi_english_marian_results/
 punjabi_english_marian_final/
 results/
