@@ -96,12 +96,22 @@ def load_config(config_path):
 def find_dataset(configured_path):
     possible_paths = [
         configured_path,
+        "hindi_english_100k.csv",
         "punjabi_english_100k.csv",
+        "data/processed/hindi_english_100k.csv",
+        "data/processed/punjabi_english_100k.csv",
         "../punjabi_english_100k.csv",
+        "../data/processed/hindi_english_100k.csv",
+        "/content/hindi_english_100k.csv",
         "/content/punjabi_english_100k.csv",
-        "/content/OmniBind/punjabi_english_100k.csv",
+        "/content/OmniBind/data/processed/hindi_english_100k.csv",
+        "/content/OmniBind/data/processed/punjabi_english_100k.csv",
+        "/kaggle/working/hindi_english_100k.csv",
         "/kaggle/working/punjabi_english_100k.csv",
-        "/kaggle/input/punjabi-english-100k/punjabi_english_100k.csv"
+        "/kaggle/working/data/processed/hindi_english_100k.csv",
+        "/kaggle/working/data/processed/punjabi_english_100k.csv",
+        "/kaggle/input/punjabi-english-100k/punjabi_english_100k.csv",
+        "/kaggle/input/datasets/wizardb2k/punjabi-english-100k/punjabi_english_100k.csv"
     ]
     for path in possible_paths:
         if path and os.path.exists(path):
@@ -132,6 +142,15 @@ def main():
     print(f"Loading dataset from: {csv_path}")
     df = pd.read_csv(csv_path)
     
+    # Detect the target language column (which is not 'english' or 'split')
+    columns = list(df.columns)
+    if 'split' in columns:
+        columns.remove('split')
+    if 'english' in columns:
+        columns.remove('english')
+    target_col = columns[0] if columns else 'punjabi'
+    print(f"Detected target language column: '{target_col}'")
+    
     # Extract splits
     train_df = df[df['split'] == 'train'].reset_index(drop=True)
     val_df = df[df['split'] == 'val'].reset_index(drop=True)
@@ -144,9 +163,9 @@ def main():
         test_df = test_df.head(10)
         
     raw_datasets = DatasetDict({
-        'train': Dataset.from_pandas(train_df[['english', 'punjabi']]),
-        'validation': Dataset.from_pandas(val_df[['english', 'punjabi']]),
-        'test': Dataset.from_pandas(test_df[['english', 'punjabi']])
+        'train': Dataset.from_pandas(train_df[['english', target_col]]),
+        'validation': Dataset.from_pandas(val_df[['english', target_col]]),
+        'test': Dataset.from_pandas(test_df[['english', target_col]])
     })
     
     print(f"Train samples: {len(raw_datasets['train']):,}")
@@ -165,15 +184,17 @@ def main():
     max_length = config['model']['max_length']
     
     # 3. Preprocess / Tokenize Dataset
-    is_pa_to_en = "pa-en" in base_model_name.lower() or "mul-en" in base_model_name.lower()
+    # We dynamically check if it is target-to-english or english-to-target
+    # E.g. 'pa-en', 'hi-en', 'mul-en' is target-to-english
+    is_target_to_en = "-en" in base_model_name.lower() or "mul-en" in base_model_name.lower()
     
     def preprocess_function(examples):
-        if is_pa_to_en:
-            inputs = [ex for ex in examples['punjabi']]
+        if is_target_to_en:
+            inputs = [ex for ex in examples[target_col]]
             targets = [ex for ex in examples['english']]
         else:
             inputs = [ex for ex in examples['english']]
-            targets = [ex for ex in examples['punjabi']]
+            targets = [ex for ex in examples[target_col]]
             
         model_inputs = tokenizer(
             inputs, 

@@ -53,21 +53,23 @@ def preprocess_data(
     en_path: str = "Anuvaad.en-pa.en",
     pa_path: str = "Anuvaad.en-pa.pa",
     output_csv: str = "punjabi_english_100k.csv",
+    col_name: str = "punjabi",
     sample_size: int = 100000,
     seed: int = 42
 ):
     """Main preprocessing pipeline."""
     print("=" * 60)
-    print("  Punjabi-English Corpus Preprocessing & Subsetting")
+    print("  Corpus Preprocessing & Subsetting")
     print("=" * 60)
     print(f"Input English Corpus: {en_path}")
-    print(f"Input Punjabi Corpus: {pa_path}")
+    print(f"Input Target Corpus:  {pa_path}")
     print(f"Target Output CSV:    {output_csv}")
+    print(f"Target Column Name:   {col_name}")
     print(f"Target Sample Size:   {sample_size:,}")
     print("-" * 60)
 
     if not os.path.exists(en_path) or not os.path.exists(pa_path):
-        raise FileNotFoundError(f"Corpus files not found! Ensure {en_path} and {pa_path} are in working directory.")
+        raise FileNotFoundError(f"Corpus files not found! Ensure {en_path} and {pa_path} are correct.")
 
     valid_pairs = []
     seen_pairs = set()
@@ -121,7 +123,7 @@ def preprocess_data(
     # Write to CSV
     with open(output_csv, "w", encoding="utf-8", newline="") as f_out:
         writer = csv.writer(f_out)
-        writer.writerow(["english", "punjabi", "split"])
+        writer.writerow(["english", col_name, "split"])
 
         for idx, (en, pa) in enumerate(sampled_pairs):
             if idx < n_train:
@@ -144,18 +146,37 @@ def preprocess_data(
         try:
             print(f"  [{split_label}]")
             print(f"    EN: {en}")
-            print(f"    PA: {pa}\n")
+            print(f"    {col_name.upper()}: {pa}\n")
         except UnicodeEncodeError:
             print(f"  [{split_label}]")
             print(f"    EN: {en}")
-            print(f"    PA: [Gurmukhi Script Text - {len(pa)} chars]\n")
+            print(f"    {col_name.upper()}: [Script Text - {len(pa)} chars]\n")
 
 
 if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser(description="Corpus Preprocessing & Subsetting")
+    parser.add_argument("--en", type=str, default="Anuvaad.en-pa.en", help="Path to raw English corpus")
+    parser.add_argument("--target", type=str, default="Anuvaad.en-pa.pa", help="Path to raw target corpus")
+    parser.add_argument("--output", type=str, default="punjabi_english_100k.csv", help="Path to output CSV")
+    parser.add_argument("--col_name", type=str, default="punjabi", help="Target language column name in output CSV")
+    parser.add_argument("--sample", type=int, default=100000, help="Number of sentence pairs to sample")
+    parser.add_argument("--seed", type=int, default=42, help="Random seed for sampling")
+    
+    args = parser.parse_args()
+    
     import sys
     if hasattr(sys.stdout, 'reconfigure'):
         try:
             sys.stdout.reconfigure(encoding='utf-8')
         except Exception:
             pass
-    preprocess_data()
+            
+    preprocess_data(
+        en_path=args.en,
+        pa_path=args.target,
+        output_csv=args.output,
+        col_name=args.col_name,
+        sample_size=args.sample,
+        seed=args.seed
+    )

@@ -1,8 +1,11 @@
 # Large datasets and corpora (do not push to GitHub)
-Anuvaad.en-pa.en
-Anuvaad.en-pa.pa
-Anuvaad.en-pa.xml
+data/
+Anuvaad.en-*
+src/Anuvaad.en-*
+src/README
+src/LICENSE
 punjabi_english_100k.csv
+hindi_english_100k.csv
 *.csv
 *.xml
 *.zip
