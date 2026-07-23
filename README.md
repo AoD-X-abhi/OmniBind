@@ -34,7 +34,8 @@ OmniBind/
 ├── requirements.txt           # Python dependencies
 ├── config.yaml                # Hyperparameters & path configurations
 ├── app.py                     # Gradio Web Interface for Live Translation
-└── train.py                   # Self-contained NMT Training Script
+├── train_punjabi.py           # Standalone Punjabi-to-English training script
+└── train_hindi.py             # Standalone Hindi-to-English training script
 ```
 
 ---
@@ -57,17 +58,21 @@ python src/preprocess.py --en data/hindi/Anuvaad.en-hi.en --target data/hindi/An
 ### Step 2: Fine-Tune on Kaggle GPU (10–15 Minutes)
 
 1. Open **[Kaggle](https://www.kaggle.com)** and create a new **Notebook**.
-2. Upload the following files to Kaggle:
-   - `data/processed/hindi_english_100k.csv` (or the Punjabi dataset)
-   - `config.yaml`
-   - `train.py`
+2. Upload the dataset file you want to train along with its corresponding training script:
+   - For Punjabi: Upload `punjabi_english_100k.csv` and `train_punjabi.py`.
+   - For Hindi: Upload `hindi_english_100k.csv` and `train_hindi.py`.
 3. Set your accelerator under notebook settings to **GPU T4** (or GPU T4 x2).
 4. Run the training script in a cell:
-   ```python
-   !python train.py
-   ```
+   - For Punjabi:
+     ```python
+     !python train_punjabi.py
+     ```
+   - For Hindi:
+     ```python
+     !python train_hindi.py
+     ```
    *Note: All library requirements are automatically verified and installed by the script.*
-5. Once completed, download the model archive `punjabi_english_marian_final.zip` (or your Hindi model output) from Kaggle.
+5. Once completed, download the model archive `punjabi_english_marian_final.zip` (or `hindi_english_marian_final.zip`) from Kaggle.
 
 ---
 
