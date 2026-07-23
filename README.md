@@ -1,6 +1,6 @@
-# VadAnuvaadNLP: Punjabi-English Neural Machine Translation (NMT)
+# OmniBind - Gurmukhi Punjabi and English Neural Machine Translation Framework
 
-A complete, end-to-end Machine Translation project fine-tuning **Meta's NLLB-200 (600M Distilled)** model on the **Anuvaad Parallel Corpus** (1.7+ million sentence pairs), optimized for **100,000 sampled sentence pairs** trained on **Kaggle GPU**.
+A complete, end-to-end Machine Translation project fine-tuning **Helsinki-NLP MarianMT** models on the **Anuvaad Parallel Corpus** (1.7+ million sentence pairs), optimized for **100,000 sampled sentence pairs** trained on **Kaggle GPU**.
 
 ---
 

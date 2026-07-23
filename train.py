@@ -99,7 +99,7 @@ def find_dataset(configured_path):
         "punjabi_english_100k.csv",
         "../punjabi_english_100k.csv",
         "/content/punjabi_english_100k.csv",
-        "/content/VadAnuvaadNLP/punjabi_english_100k.csv",
+        "/content/OmniBind/punjabi_english_100k.csv",
         "/kaggle/working/punjabi_english_100k.csv",
         "/kaggle/input/punjabi-english-100k/punjabi_english_100k.csv"
     ]
@@ -113,7 +113,7 @@ def main():
     config = load_config(args.config)
     
     print("=" * 60)
-    print("  VadAnuvaadNLP: Punjabi-English NMT Training Pipeline")
+    print("  OmniBind: Punjabi-English NMT Training Pipeline")
     print("=" * 60)
     
     # 1. Locate Dataset

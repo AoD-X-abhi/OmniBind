@@ -99,7 +99,7 @@ def create_ui():
 
     with gr.Blocks(title="Punjabi-English NMT Translator", css=custom_css) as demo:
         gr.Markdown("<h1 class='main-title'>ੴ Punjabi ↔ English Neural Machine Translation</h1>")
-        gr.Markdown("<p class='sub-title'>State-of-the-Art Machine Translation powered by NLLB-200 & VadAnuvaadNLP Corpus</p>")
+        gr.Markdown("<p class='sub-title'>State-of-the-Art Machine Translation powered by Helsinki-NLP & OmniBind Corpus</p>")
 
         with gr.Row():
             with gr.Column():

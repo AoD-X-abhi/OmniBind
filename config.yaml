@@ -1,4 +1,4 @@
-# Configuration for Punjabi-English Translation Project (VadAnuvaadNLP)
+# Configuration for Punjabi-English Translation Project (OmniBind)
 
 data:
   raw_en_path: "Anuvaad.en-pa.en"
