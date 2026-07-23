@@ -84,6 +84,17 @@ DEFAULT_CONFIG = {
 
 def load_config(config_path):
     if not os.path.exists(config_path):
+        possible_configs = [
+            "/kaggle/input/datasets/wizardb2k/config/config.yaml",
+            "/kaggle/input/config/config.yaml"
+        ]
+        for p in possible_configs:
+            if os.path.exists(p):
+                print(f"Found configuration file at: {p}")
+                config_path = p
+                break
+
+    if not os.path.exists(config_path):
         print(f"Warning: Configuration file '{config_path}' not found! Using default configuration.")
         return DEFAULT_CONFIG
     with open(config_path, "r") as f:
@@ -111,7 +122,8 @@ def find_dataset(configured_path):
         "/kaggle/working/data/processed/hindi_english_100k.csv",
         "/kaggle/working/data/processed/punjabi_english_100k.csv",
         "/kaggle/input/punjabi-english-100k/punjabi_english_100k.csv",
-        "/kaggle/input/datasets/wizardb2k/punjabi-english-100k/punjabi_english_100k.csv"
+        "/kaggle/input/datasets/wizardb2k/punjabi-english-100k/punjabi_english_100k.csv",
+        "/kaggle/input/datasets/wizardb2k/hindi-english-100k/hindi_english_100k.csv"
     ]
     for path in possible_paths:
         if path and os.path.exists(path):
