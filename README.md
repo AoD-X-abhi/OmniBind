@@ -97,13 +97,28 @@ python src/preprocess.py --en data/hindi/Anuvaad.en-hi.en --target data/hindi/An
 - **sacreBLEU**: Standard NMT n-gram precision metric (Target: `> 25.0`)
 - **chrF / chrF++**: Character-level n-gram F-score (Target: `> 50.0`)
 
-### Training Results (Placeholder)
-*To be filled after completing training on Kaggle/Colab:*
+### Training Progress Results
 
-| Dataset / Model | Target Direction | Epochs | Training Loss | Validation Loss | Test sacreBLEU | Test chrF++ |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
-| **English ↔ Punjabi** | Punjabi $\rightarrow$ English | 3 | *[Pending]* | *[Pending]* | *[Pending]* | *[Pending]* |
-| **English ↔ Hindi**   | Hindi $\rightarrow$ English   | 3 | *[Pending]* | *[Pending]* | *[Pending]* | *[Pending]* |
+Below is the epoch-by-epoch training progress and translation metrics extracted from the training logs on Kaggle (T4 GPU):
+
+#### 1. English ↔ Hindi (`Helsinki-NLP/opus-mt-hi-en`)
+* **Dataset Size:** 100k pairs (85,000 train, 7,500 validation, 7,500 test)
+* **Training Time:** ~1 hour 50 minutes (3 epochs)
+
+| Epoch | Training Loss | Validation Loss | Validation BLEU | Validation chrF |
+| :---: | :---: | :---: | :---: | :---: |
+| **1** | 6.760691 | 3.125986 | 16.80 | 41.04 |
+| **2** | 5.979705 | 2.929479 | 18.26 | 42.74 |
+| **3** | 5.767396 | 2.879738 | **18.56** | **43.23** |
+
+#### 2. English ↔ Punjabi (`Helsinki-NLP/opus-mt-pa-en`)
+* **Dataset Size:** 100k pairs (85,000 train, 7,500 validation, 7,500 test)
+
+| Epoch | Training Loss | Validation Loss | Validation BLEU | Validation chrF |
+| :---: | :---: | :---: | :---: | :---: |
+| **1** | 6.235920 | 2.886278 | **19.81** | **44.53** |
+| **2** | *[In Progress]* | *[Pending]* | *[Pending]* | *[Pending]* |
+| **3** | *[Pending]* | *[Pending]* | *[Pending]* | *[Pending]* |
 
 ---
 
