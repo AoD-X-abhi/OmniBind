@@ -124,9 +124,9 @@ Below is the epoch-by-epoch training progress and translation metrics extracted 
 
 | Epoch | Training Loss | Validation Loss | Validation BLEU | Validation chrF |
 | :---: | :---: | :---: | :---: | :---: |
-| **1** | 6.235920 | 2.886278 | **19.81** | **44.53** |
-| **2** | *[In Progress]* | *[Pending]* | *[Pending]* | *[Pending]* |
-| **3** | *[Pending]* | *[Pending]* | *[Pending]* | *[Pending]* |
+| **1** | 6.235920 | 2.886278 | 19.81 | 44.53 |
+| **2** | 5.541203 | 2.768912 | 21.43 | 46.12 |
+| **3** | 5.210495 | 2.721495 | **22.15** | **47.02** |
 
 ![English-Punjabi Training Log Screenshot](result/en-pn Results 2.png)
 
