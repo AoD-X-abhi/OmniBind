@@ -13,6 +13,12 @@ A complete, end-to-end Machine Translation project fine-tuning **Helsinki-NLP Ma
 
 ---
 
+## 📐 Methodology Flowchart
+
+![OmniBind Methodology Flowchart](result/flow_chart.png)
+
+---
+
 ## 📁 Repository Directory Structure
 
 ```text
@@ -111,6 +117,8 @@ Below is the epoch-by-epoch training progress and translation metrics extracted 
 | **2** | 5.979705 | 2.929479 | 18.26 | 42.74 |
 | **3** | 5.767396 | 2.879738 | **18.56** | **43.23** |
 
+![English-Hindi Training Log Screenshot](result/en-hin 2.png)
+
 #### 2. English ↔ Punjabi (`Helsinki-NLP/opus-mt-pa-en`)
 * **Dataset Size:** 100k pairs (85,000 train, 7,500 validation, 7,500 test)
 
@@ -119,6 +127,8 @@ Below is the epoch-by-epoch training progress and translation metrics extracted 
 | **1** | 6.235920 | 2.886278 | **19.81** | **44.53** |
 | **2** | *[In Progress]* | *[Pending]* | *[Pending]* | *[Pending]* |
 | **3** | *[Pending]* | *[Pending]* | *[Pending]* | *[Pending]* |
+
+![English-Punjabi Training Log Screenshot](result/en-pn Results 2.png)
 
 ---
 
